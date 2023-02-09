@@ -4,9 +4,6 @@
 </div>
 
 <style lang="scss">
-	:global(body) {
-		background-color: #f6f7fb;
-	}
 	.container {
 		max-width: 1200px;
 		margin: auto;
