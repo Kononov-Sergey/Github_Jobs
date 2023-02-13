@@ -1,4 +1,8 @@
-<div class="search-section"><input type="text" /></div>
+<script>
+	import SearchInput from '$lib/input/search-input.svelte';
+</script>
+
+<div class="search-section"><SearchInput /></div>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
 <style>
