@@ -43,9 +43,11 @@
 		font-family: 'Poppins';
 		display: flex;
 		gap: 12px;
-		user-select: none;
 		align-items: center;
+		user-select: none;
 		cursor: pointer;
+		width: fit-content;
+		-webkit-tap-highlight-color: transparent;
 	}
 	input {
 		display: none;
