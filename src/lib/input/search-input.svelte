@@ -1,6 +1,6 @@
 <script>
 	import { searchInputValue } from '$lib/store/search-input-state';
-	import SearchButton from './search-button.svelte';
+	import SearchButton from '../button/search-button.svelte';
 </script>
 
 <div class="wrapper">
@@ -9,7 +9,7 @@
 		class="search-input"
 		bind:value={$searchInputValue}
 		type="text"
-		placeholder="Профессия, должность или компания"
+		placeholder="Title, companies, expertise or benefits"
 	/>
 	<SearchButton />
 </div>
@@ -33,6 +33,8 @@
 		outline: none;
 		flex-grow: 1;
 		overflow-x: hidden;
+		font-family: 'Roboto';
+		font-weight: 400;
 		&::placeholder {
 			color: #b9bdcf;
 		}

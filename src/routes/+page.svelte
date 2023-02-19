@@ -1,9 +1,18 @@
-<script>
+<script lang="ts">
 	import SearchInput from '$lib/input/search-input.svelte';
+	import Checkbox from '$lib/select/checkbox.svelte';
+
+	let isFullTime: boolean = false;
 </script>
 
 <div class="search-section"><SearchInput /></div>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<section>
+	<aside><Checkbox title="Full time" bind:value={isFullTime} /></aside>
+	<main>
+		<li>1</li>
+		<li>2</li>
+	</main>
+</section>
 
 <style>
 	.search-section {
