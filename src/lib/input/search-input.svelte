@@ -23,6 +23,7 @@
 		max-width: 790px;
 		border-radius: 4px;
 		padding: 4px 4px 4px 16px;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 	}
 	.briefcase {
 		width: 20px;

@@ -1,15 +1,20 @@
 <script lang="ts">
+	import LocationInput from '$lib/input/location-input.svelte';
 	import SearchInput from '$lib/input/search-input.svelte';
 	import Checkbox from '$lib/select/checkbox.svelte';
 	import TitleCard from '$lib/wrapper/TitleCard.svelte';
 
 	let isFullTime: boolean = false;
+	let locationInputValue: string = '';
 </script>
 
 <section class="search-section"><SearchInput /></section>
 <div class="wrapper">
 	<aside class="filter-aside">
-		<Checkbox title="Full time" bind:value={isFullTime} /><TitleCard title="Location">hi</TitleCard>
+		<Checkbox title="Full time" bind:value={isFullTime} />
+		<TitleCard title="Location">hi</TitleCard>
+		<LocationInput bind:value={locationInputValue} />
+		{locationInputValue}
 	</aside>
 	<main>
 		<li>1</li>
