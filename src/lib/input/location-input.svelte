@@ -1,7 +1,11 @@
 <script lang="ts">
-	import { makeDebounceFunction } from '$lib/helper/debounce';
+	import type { GetLocationSuggestsRes } from '$lib/fetchers/get-location-suggests';
+	import GetLocationSuggests from '$lib/fetchers/get-location-suggests';
+	import { makeDebounceFunction } from '$lib/helpers/debounce';
 
 	export let value: string;
+
+	let data: GetLocationSuggestsRes;
 
 	const debounce = makeDebounceFunction();
 
@@ -11,6 +15,14 @@
 			value = newInputValue;
 		}, 400);
 	};
+
+	$: {
+		if (value.length > 2) {
+			GetLocationSuggests(value)
+				.then((result) => (data = result))
+				.catch((error) => console.log(error));
+		}
+	}
 </script>
 
 <div class="wrapper">
