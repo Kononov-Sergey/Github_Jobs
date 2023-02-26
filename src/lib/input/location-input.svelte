@@ -53,7 +53,7 @@
 	{#if locationData && locationData.items.length > 0}
 		<ul class="suggustions">
 			{#each locationData.items as location (location.id)}
-				<li>{location.text}</li>
+				<button type="button">{location.text}</button>
 			{/each}
 		</ul>
 	{/if}
@@ -111,7 +111,8 @@
 		width: 100%;
 		max-height: 20vh;
 		overflow-y: scroll;
-		> li {
+		> button {
+			width: 100%;
 			transition: all 0.2s ease;
 			font-family: 'Roboto';
 			padding: 10px;
