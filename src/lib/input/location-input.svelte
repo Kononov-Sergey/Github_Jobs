@@ -5,7 +5,9 @@
 
 	export let value: string;
 
-	let data: GetLocationSuggestsRes;
+	let locationData: GetLocationSuggestsRes | null = null;
+
+	let locationErrorMessage: string | null = null;
 
 	const debounce = makeDebounceFunction();
 
@@ -17,15 +19,27 @@
 	};
 
 	$: {
+		if (value.length > 0 && value.length <= 2) {
+			locationErrorMessage = 'Location should contains more than 2 characters';
+		}
+		if (value.length === 0) {
+			locationData = null;
+			locationErrorMessage = null;
+		}
 		if (value.length > 2) {
 			GetLocationSuggests(value)
-				.then((result) => (data = result))
-				.catch((error) => console.log(error));
+				.then((result) => {
+					if (result.items.length === 0) {
+						locationErrorMessage = 'No such location';
+					}
+					locationData = result;
+				})
+				.catch(() => (locationErrorMessage = 'Network error'));
 		}
 	}
 </script>
 
-<div class="wrapper">
+<div class="wrapper" data-error={locationErrorMessage}>
 	<img class="earth" src="/icons/earth.svg" alt="earth" />
 	<input
 		class="location-input"
@@ -33,10 +47,21 @@
 		type="text"
 		placeholder="City, state or country"
 	/>
+	{#if locationErrorMessage}
+		<p class="error">{locationErrorMessage}</p>
+	{/if}
+	{#if locationData && locationData.items.length > 0}
+		<ul class="suggustions">
+			{#each locationData.items as location (location.id)}
+				<li>{location.text}</li>
+			{/each}
+		</ul>
+	{/if}
 </div>
 
 <style lang="scss">
 	.wrapper {
+		position: relative;
 		display: flex;
 		gap: 8px;
 		background-color: #fff;
@@ -44,6 +69,11 @@
 		border-radius: 4px;
 		padding: 4px 4px 4px 16px;
 		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+		border: 1px solid #fff;
+		transition: all 0.2s ease;
+		&[data-error] {
+			border: 1px solid #ff3333;
+		}
 	}
 	.earth {
 		width: 15px;
@@ -61,6 +91,34 @@
 		}
 		&:placeholder-shown {
 			text-overflow: ellipsis;
+		}
+	}
+	.error {
+		font-family: 'Roboto';
+		font-size: 12px;
+		color: #ff3333;
+		position: absolute;
+		bottom: -16px;
+		left: 0px;
+	}
+	.suggustions {
+		position: absolute;
+		top: 58px;
+		left: 0px;
+		background-color: #fff;
+		border-radius: 4px;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+		width: 100%;
+		max-height: 20vh;
+		overflow-y: scroll;
+		> li {
+			transition: all 0.2s ease;
+			font-family: 'Roboto';
+			padding: 10px;
+			cursor: pointer;
+			&:hover {
+				background-color: #dfdfdf;
+			}
 		}
 	}
 </style>

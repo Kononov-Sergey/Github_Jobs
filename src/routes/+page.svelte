@@ -14,7 +14,6 @@
 		<Checkbox title="Full time" bind:value={isFullTime} />
 		<TitleCard title="Location">hi</TitleCard>
 		<LocationInput bind:value={locationInputValue} />
-		{locationInputValue}
 	</aside>
 	<main>
 		<li>1</li>
