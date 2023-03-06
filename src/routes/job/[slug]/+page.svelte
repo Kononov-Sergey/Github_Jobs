@@ -1,8 +1,17 @@
 <script>
 	import BackButton from '$lib/button/back-button.svelte';
-	import FullTimeBadge from '$lib/ui/full-time-badge.svelte';
 </script>
 
-<h1>Hello and welcome to my site!</h1>
-<BackButton />
-<FullTimeBadge />
+<div class="wrapper">
+	<aside><BackButton /></aside>
+	<main>main</main>
+</div>
+
+<style lang="scss">
+	.wrapper {
+		width: 100%;
+		display: grid;
+		gap: 32px;
+		grid-template-columns: 1fr 2fr;
+	}
+</style>

@@ -1,4 +1,10 @@
-<p>Full time</p>
+<script lang="ts">
+	import type { VacancySchedule } from '$lib/fetchers/get-vacancies';
+
+	export let title: VacancySchedule['id'];
+</script>
+
+<p>{title}</p>
 
 <style lang="scss">
 	p {

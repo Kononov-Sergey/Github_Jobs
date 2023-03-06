@@ -20,11 +20,13 @@
 
 <section class="search-section"><SearchInput /></section>
 <div class="wrapper">
-	<aside class="filter-aside">
-		<Checkbox title="Full time" bind:value={isFullTime} />
-		<TitleCard title="Location">hi</TitleCard>
-		<LocationInput bind:value={locationInputValue} />
-	</aside>
+	<div>
+		<aside class="filter-aside">
+			<Checkbox title="Full time" bind:value={isFullTime} />
+			<TitleCard title="Location">hi</TitleCard>
+			<LocationInput bind:value={locationInputValue} />
+		</aside>
+	</div>
 	<main>
 		{#if vacancies && vacancies.length > 0}
 			<ul class="vacancies">
@@ -45,7 +47,7 @@
 	</main>
 </div>
 
-<style>
+<style lang="scss">
 	.wrapper {
 		width: 100%;
 		display: grid;
@@ -53,10 +55,11 @@
 		grid-template-columns: 1fr 2fr;
 	}
 	.filter-aside {
-		top: 0px;
+		top: 30px;
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
+		position: sticky;
 	}
 	.search-section {
 		background-image: url('/images/backgroundImg.png');

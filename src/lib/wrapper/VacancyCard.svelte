@@ -1,16 +1,17 @@
 <script lang="ts">
 	import type {
-		VacancyAdditionalInfo,
 		VacancyAddress,
-		VacancyEmployer
+		VacancyEmployer,
+		VacancySchedule
 	} from '$lib/fetchers/get-vacancies';
+	import ScheduleBadge from '$lib/ui/schedule-badge.svelte';
 
 	export let id: string;
 	export let companyInfo: VacancyEmployer;
 	export let title: string;
 	export let publishedAt: string;
 	export let address: VacancyAddress | null;
-	export let schedule: VacancyAdditionalInfo;
+	export let schedule: VacancySchedule;
 </script>
 
 <li class="wrapper">
@@ -23,7 +24,7 @@
 	<div class="main-info">
 		<button class="company-btn" type="button">{companyInfo.name}</button>
 		<a class="title-link" href="/job/{id}">{title}</a>
-		<span>{schedule.id}</span>
+		<span><ScheduleBadge title={schedule.id} /></span>
 	</div>
 	<div class="additional-info">
 		<address>{address?.city}</address>
