@@ -22,7 +22,7 @@
 
 	<div class="main-info">
 		<button class="company-btn" type="button">{companyInfo.name}</button>
-		<button class="title-btn" type="button">{title}</button>
+		<a class="title-link" href="/job/{id}">{title}</a>
 		<span>{schedule.id}</span>
 	</div>
 	<div class="additional-info">
@@ -63,7 +63,7 @@
 		color: #334680;
 		font-family: 'Roboto';
 		.company-btn,
-		.title-btn {
+		.title-link {
 			color: #334680;
 			font-family: 'Roboto';
 			padding: 0px;
@@ -76,7 +76,7 @@
 			font-size: 12px;
 			margin-bottom: 8px;
 		}
-		.title-btn {
+		.title-link {
 			font-weight: 400;
 			font-size: 18px;
 			margin-bottom: 12px;

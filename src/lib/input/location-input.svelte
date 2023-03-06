@@ -65,7 +65,6 @@
 		display: flex;
 		gap: 8px;
 		background-color: #fff;
-		width: 100%;
 		border-radius: 4px;
 		padding: 4px 4px 4px 16px;
 		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
