@@ -1,2 +1,6 @@
+<script>
+	import BackButton from '$lib/button/back-button.svelte';
+</script>
+
 <h1>Hello and welcome to my site!</h1>
-<a href="/">home</a>
+<BackButton />
