@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type {
 		VacancyAddress,
+		VacancyArea,
 		VacancyEmployer,
 		VacancySchedule
 	} from '$lib/fetchers/get-vacancies';
+	import CityBadge from '$lib/ui/city-badge.svelte';
 	import DayAgo from '$lib/ui/day-ago.svelte';
 	import ScheduleBadge from '$lib/ui/schedule-badge.svelte';
 
@@ -12,6 +14,7 @@
 	export let title: string;
 	export let publishedAt: string;
 	export let address: VacancyAddress | null;
+	export let area: VacancyArea;
 	export let schedule: VacancySchedule;
 </script>
 
@@ -28,7 +31,7 @@
 		<ScheduleBadge titleId={schedule.id} />
 	</div>
 	<div class="additional-info">
-		<address>{address?.city}</address>
+		<CityBadge city={address?.city} country={area.name} />
 		<DayAgo {publishedAt} />
 	</div>
 </li>
@@ -44,6 +47,8 @@
 		img {
 			width: 90px;
 			height: 90px;
+			min-width: 90px;
+			min-height: 90px;
 			border-radius: 4px;
 			object-fit: contain;
 		}
@@ -51,8 +56,10 @@
 	.mock-image {
 		width: 90px;
 		height: 90px;
-		background-color: #f2f2f2;
+		min-width: 90px;
+		min-height: 90px;
 		border-radius: 4px;
+		background-color: #f2f2f2;
 		color: #bdbdbd;
 		font-family: 'Roboto';
 		font-weight: 500;

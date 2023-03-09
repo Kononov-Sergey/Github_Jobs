@@ -33,7 +33,7 @@
 		{/if}
 		{#if vacancies !== null}
 			<ul class="vacancies">
-				{#each vacancies as { id, address, name, employer, published_at, schedule } (id)}
+				{#each vacancies as { id, address, name, employer, published_at, schedule, area } (id)}
 					<VacancyCard
 						{id}
 						{address}
@@ -41,6 +41,7 @@
 						companyInfo={employer}
 						publishedAt={published_at}
 						{schedule}
+						{area}
 					/>
 				{/each}
 			</ul>

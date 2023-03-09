@@ -13,6 +13,7 @@
 
 <style lang="scss">
 	time {
+		white-space: nowrap;
 		color: #b7bcce;
 		font-family: 'Roboto';
 		font-weight: 500;
