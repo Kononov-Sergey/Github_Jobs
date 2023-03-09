@@ -4,6 +4,7 @@
 		VacancyEmployer,
 		VacancySchedule
 	} from '$lib/fetchers/get-vacancies';
+	import DayAgo from '$lib/ui/day-ago.svelte';
 	import ScheduleBadge from '$lib/ui/schedule-badge.svelte';
 
 	export let id: string;
@@ -24,11 +25,11 @@
 	<div class="main-info">
 		<button class="company-btn" type="button">{companyInfo.name}</button>
 		<a class="title-link" href="/job/{id}">{title}</a>
-		<span><ScheduleBadge title={schedule.id} /></span>
+		<ScheduleBadge titleId={schedule.id} />
 	</div>
 	<div class="additional-info">
 		<address>{address?.city}</address>
-		<time datetime={publishedAt}>{schedule.id}</time>
+		<DayAgo {publishedAt} />
 	</div>
 </li>
 
@@ -78,6 +79,8 @@
 			margin-bottom: 8px;
 		}
 		.title-link {
+			text-decoration: none;
+			display: block;
 			font-weight: 400;
 			font-size: 18px;
 			margin-bottom: 12px;
@@ -87,5 +90,7 @@
 		flex-grow: 1;
 		display: flex;
 		justify-content: end;
+		align-items: flex-end;
+		gap: 29px;
 	}
 </style>

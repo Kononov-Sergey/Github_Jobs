@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GetLocationSuggestsRes } from '$lib/fetchers/get-location-suggests';
-	import GetLocationSuggests from '$lib/fetchers/get-location-suggests';
+	import getLocationSuggests from '$lib/fetchers/get-location-suggests';
 	import { makeDebounceFunction } from '$lib/helpers/debounce';
 
 	export let value: string;
@@ -27,7 +27,7 @@
 			locationErrorMessage = null;
 		}
 		if (value.length > 2) {
-			GetLocationSuggests(value)
+			getLocationSuggests(value)
 				.then((result) => {
 					if (result.items.length === 0) {
 						locationErrorMessage = 'No such location';

@@ -1,10 +1,20 @@
 <script lang="ts">
 	import type { VacancySchedule } from '$lib/fetchers/get-vacancies';
 
-	export let title: VacancySchedule['id'];
+	export let titleId: VacancySchedule['id'];
+
+	type VacancyScheduleReferenceMapType = { [key in VacancySchedule['id']]: string };
+
+	const referenceMap: VacancyScheduleReferenceMapType = {
+		flexible: 'Flexible',
+		flyInFlyOut: 'Fly-in Fly-out',
+		fullDay: 'Full day',
+		remote: 'Remote',
+		shift: 'Shift'
+	};
 </script>
 
-<p>{title}</p>
+<p>{referenceMap[titleId]}</p>
 
 <style lang="scss">
 	p {

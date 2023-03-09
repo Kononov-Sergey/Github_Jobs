@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { VacancyInfo } from '$lib/fetchers/get-vacancies';
-	import GetVacancies from '$lib/fetchers/get-vacancies';
+	import getVacancies from '$lib/fetchers/get-vacancies';
 	import LocationInput from '$lib/input/location-input.svelte';
 	import SearchInput from '$lib/input/search-input.svelte';
 	import Checkbox from '$lib/select/checkbox.svelte';
@@ -14,7 +14,7 @@
 	let vacancies: VacancyInfo[] | null = null;
 
 	onMount(() => {
-		GetVacancies('').then((result) => (vacancies = result.items));
+		getVacancies('').then((result) => (vacancies = result.items));
 	});
 </script>
 
@@ -28,7 +28,10 @@
 		</aside>
 	</div>
 	<main>
-		{#if vacancies && vacancies.length > 0}
+		{#if vacancies === null}
+			<h1>Please wait...</h1>
+		{/if}
+		{#if vacancies !== null}
 			<ul class="vacancies">
 				{#each vacancies as { id, address, name, employer, published_at, schedule } (id)}
 					<VacancyCard
@@ -41,7 +44,8 @@
 					/>
 				{/each}
 			</ul>
-		{:else}
+		{/if}
+		{#if vacancies !== null && vacancies.length === 0}
 			<h1>No such vacancies</h1>
 		{/if}
 	</main>
@@ -75,5 +79,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
+	}
+	h1 {
+		text-align: center;
+		font-family: 'Poppins';
+		font-weight: 300;
+		color: #b9bdcf;
 	}
 </style>
