@@ -8,6 +8,7 @@
 	import CityBadge from '$lib/ui/city-badge.svelte';
 	import DayAgo from '$lib/ui/day-ago.svelte';
 	import ScheduleBadge from '$lib/ui/schedule-badge.svelte';
+	import { fly } from 'svelte/transition';
 
 	export let id: string;
 	export let companyInfo: VacancyEmployer;
@@ -15,10 +16,11 @@
 	export let publishedAt: string;
 	export let address: VacancyAddress | null;
 	export let area: VacancyArea;
-	export let schedule: VacancySchedule;
+	export let schedule: VacancySchedule | null;
+	export let index: number;
 </script>
 
-<li class="wrapper">
+<li class="wrapper" transition:fly={{ y: 200, duration: 1000, delay: 500 + index * 100 }}>
 	{#if companyInfo.logo_urls}
 		<img src={companyInfo.logo_urls[240]} alt={companyInfo.name} width="90" height="90" />
 	{:else}
@@ -28,7 +30,9 @@
 	<div class="main-info">
 		<button class="company-btn" type="button">{companyInfo.name}</button>
 		<a class="title-link" href="/job/{id}">{title}</a>
-		<ScheduleBadge titleId={schedule.id} />
+		{#if schedule}
+			<ScheduleBadge titleId={schedule.id} />
+		{/if}
 	</div>
 	<div class="additional-info">
 		<CityBadge city={address?.city} country={area.name} />

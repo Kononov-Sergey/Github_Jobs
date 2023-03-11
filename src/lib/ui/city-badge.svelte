@@ -14,6 +14,7 @@
 		display: flex;
 		align-items: center;
 		gap: 7.5px;
+		white-space: nowrap;
 	}
 	img {
 		width: 18px;

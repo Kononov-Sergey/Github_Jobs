@@ -7,6 +7,7 @@
 	import TitleCard from '$lib/wrapper/TitleCard.svelte';
 	import VacancyCard from '$lib/wrapper/VacancyCard.svelte';
 	import { onMount } from 'svelte';
+	import { fade, fly } from 'svelte/transition';
 
 	let isFullTime: boolean = false;
 	let locationInputValue: string = '';
@@ -28,12 +29,12 @@
 		</aside>
 	</div>
 	<main>
-		{#if vacancies === null}
-			<h1>Please wait...</h1>
-		{/if}
 		{#if vacancies !== null}
+			<h1 out:fade={{ duration: 500 }}>Please wait...</h1>
+		{/if}
+		<!-- {#if vacancies !== null}
 			<ul class="vacancies">
-				{#each vacancies as { id, address, name, employer, published_at, schedule, area } (id)}
+				{#each vacancies as { id, address, name, employer, published_at, schedule, area }, index (id)}
 					<VacancyCard
 						{id}
 						{address}
@@ -42,12 +43,13 @@
 						publishedAt={published_at}
 						{schedule}
 						{area}
+						{index}
 					/>
 				{/each}
 			</ul>
-		{/if}
+		{/if} -->
 		{#if vacancies !== null && vacancies.length === 0}
-			<h1>No such vacancies</h1>
+			<h1 transition:fade>No such vacancies</h1>
 		{/if}
 	</main>
 </div>

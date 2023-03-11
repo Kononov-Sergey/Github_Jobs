@@ -140,8 +140,25 @@
 				display: block;
 				background-color: transparent;
 			}
+			a {
+				text-decoration: none;
+			}
 			button {
 				cursor: pointer;
+			}
+			body::-webkit-scrollbar {
+				position: absolute;
+				width: 8px;
+			}
+			body::-webkit-scrollbar-track {
+				background: #f6f7fb;
+			}
+			body::-webkit-scrollbar-thumb {
+				background-color: #b9bdcf;
+				border-radius: 4px;
+			}
+			html {
+				margin-left: calc(100vw - 100%);
 			}
 		</style>
 		<meta name="viewport" content="width=device-width" />
